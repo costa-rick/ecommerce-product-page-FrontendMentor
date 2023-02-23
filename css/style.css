@@ -1,1 +1,6 @@
+@import url('./global.css');
+@import url('./variaveis.css');
+@import url('./tipografia.css');
+@import url('./animacoes.css');
 
+@import url('./menu.css');

@@ -1,0 +1,14 @@
+:root {
+	--cor-primaria-1: hsl(26, 100%, 55%);
+	--cor-primaria-2: hsl(25, 100%, 94%);
+
+	--cor-neutra-1: hsl(220, 13%, 13%);
+	--cor-neutra-2: hsl(219, 9%, 45%);
+	--cor-neutra-3: hsl(220, 14%, 75%);
+	--cor-neutra-4: hsl(223, 64%, 98%);
+	--cor-neutra-5: hsl(0, 0%, 100%);
+	--cor-neutra-6: hsl(0, 0%, 0%);
+
+	--fonte-primaria-1: 400 1.6rem/1.3 'Kumbh Sans', sans-serif;
+	--fonte-primaria-2: 700 1.8rem/1.4 'Kumbh Sans', sans-serif;
+}
