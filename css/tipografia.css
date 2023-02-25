@@ -5,3 +5,7 @@
 .fonte-primaria-2 {
 	font: var(--fonte-primaria-2);
 }
+
+.fonte-primaria-titulo {
+	font: var(--fonte-primaria-titulo);
+}

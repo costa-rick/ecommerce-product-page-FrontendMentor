@@ -1,0 +1,136 @@
+.galeria-imagens {
+	display: flex;
+	overflow-x: hidden;
+}
+
+.galeria {
+	position: relative;
+}
+
+.galeria-botao-anterior {
+	left: 1.5rem;
+	background: url('../images/icon-previous.svg') no-repeat center;
+}
+
+.galeria-botao-proximo {
+	right: 1.5rem;
+	background: url('../images/icon-next.svg') no-repeat center;
+}
+
+.galeria-botao-anterior,
+.galeria-botao-proximo {
+	position: absolute;
+	border: none;
+	width: 4rem;
+	height: 4rem;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	top: calc(50% - 2rem);
+	background-color: var(--cor-neutra-5);
+	background-size: 9px 10px;
+}
+
+.produto-conteudo {
+	padding: 1.6rem;
+	display: grid;
+	gap: 1rem;
+}
+
+.companhia {
+	font: var(--fonte-primaria-2);
+	font-size: 1.1rem;
+	letter-spacing: 0.1rem;
+	text-transform: uppercase;
+	color: var(--cor-primaria-1);
+	display: block;
+}
+
+.produto-texto {
+	font-size: 1.5rem;
+	color: var(--cor-neutra-2);
+}
+
+.produto-preco {
+	display: grid;
+	grid-template-columns: auto 1fr auto;
+	align-items: center;
+	gap: 1rem;
+	padding: 1rem 0;
+}
+
+.preco {
+	font-size: 2.4rem;
+	letter-spacing: 0.1rem;
+}
+
+.desconto {
+	color: var(--cor-primaria-1);
+	font-size: 1.4rem;
+	padding: 0.2rem 0.5rem;
+	background: var(--cor-primaria-2);
+	place-self: center start;
+	border-radius: 0.5rem;
+	text-align: center;
+}
+
+.preco-anterior {
+	font-size: 1.4rem;
+	color: var(--cor-neutra-3);
+	text-decoration: line-through;
+}
+
+.quantidade-produto {
+	display: grid;
+	grid-template-columns: auto 1fr auto;
+	align-items: center;
+	justify-items: center;
+	background: var(--cor-neutra-4);
+	border-radius: 0.8rem;
+}
+
+.botao-quantidade {
+	padding: 1.8rem;
+	transition: 0.2s;
+	cursor: pointer;
+	user-select: none;
+}
+
+.quantidade {
+	font-size: 1.6rem;
+	color: var(--cor-neutra-1);
+}
+
+.botao-adicionar-carrinho {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 1.5rem;
+	border: none;
+	background: var(--cor-primaria-1);
+	color: var(--cor-neutra-5);
+	padding: 1.6rem;
+	font-size: 1.4rem;
+	border-radius: 0.8rem;
+	box-shadow: 0 0.8rem 0.5rem 0rem var(--cor-primaria-2);
+	cursor: pointer;
+	transition: 0.2s;
+}
+
+.botao-adicionar-carrinho:hover {
+	background: hsl(27, 100%, 71%);
+}
+
+.botao-quantidade:hover svg path {
+	fill: hsl(27, 100%, 71%);
+}
+
+.botao-adicionar-carrinho:active,
+.botao-quantidade:active {
+	scale: 0.95;
+}
+
+.botao-adicionar-carrinho svg path {
+	fill: var(--cor-neutra-5);
+}

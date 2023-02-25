@@ -30,6 +30,7 @@
 	width: 100%;
 	background: hsl(0, 0%, 0%, 0.7);
 	display: none;
+	z-index: 50;
 }
 
 .navegacao-conteudo {
