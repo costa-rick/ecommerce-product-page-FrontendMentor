@@ -1,3 +1,5 @@
+import ArgumentoInvalidoErro from './ArgumentoInvalidoErro.js'
+
 export default class MenuMobile {
 	constructor(botaoAbrir, botaoFechar, menu) {
 		this.botaoAbrirEl = document.querySelector(botaoAbrir)
@@ -41,7 +43,7 @@ export default class MenuMobile {
 
 	iniciar() {
 		if (!this.botaoAbrirEl || !this.botaoFecharEl || !this.menuEl) {
-			throw new Error('Valores undefined não são aceitos, forneça argumentos válidos.')
+			throw new ArgumentoInvalidoErro()
 		}
 		this.adicionarEventos()
 	}

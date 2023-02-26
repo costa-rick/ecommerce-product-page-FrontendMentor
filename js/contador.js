@@ -1,3 +1,5 @@
+import ArgumentoInvalidoErro from './ArgumentoInvalidoErro.js'
+
 export default class Contador {
 	constructor(botaoIncremento, botaoDecremento, contador) {
 		this.botaoIncrementoEl = document.querySelector(botaoIncremento)
@@ -35,7 +37,7 @@ export default class Contador {
 
 	iniciar() {
 		if (!this.botaoDecrementoEl || !this.botaoIncrementoEl || !this.contadorEl) {
-			throw new Error('Valores undefined não são aceitos, forneça argumentos válidos.')
+			throw new ArgumentoInvalidoErro()
 		}
 
 		this.adicionarEventos()
