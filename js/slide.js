@@ -47,8 +47,6 @@ export default class Slide {
 		this.esconderBotao()
 	}
 
-	ver
-
 	esconderBotao() {
 		if (this.estadoSlide === 0) {
 			this.botaoAnteriorEl.style.display = 'none'
