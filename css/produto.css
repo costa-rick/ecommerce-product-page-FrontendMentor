@@ -1,6 +1,10 @@
 .galeria-imagens {
-	display: flex;
 	overflow-x: hidden;
+}
+
+.galeria-container-imagens {
+	display: flex;
+	transition: 0.3s;
 }
 
 .galeria {
@@ -30,6 +34,8 @@
 	top: calc(50% - 2rem);
 	background-color: var(--cor-neutra-5);
 	background-size: 9px 10px;
+	transition: 0.2s;
+	z-index: 50;
 }
 
 .produto-conteudo {
@@ -127,7 +133,9 @@
 }
 
 .botao-adicionar-carrinho:active,
-.botao-quantidade:active {
+.botao-quantidade:active,
+.galeria-botao-anterior:active,
+.galeria-botao-proximo:active {
 	scale: 0.95;
 }
 
