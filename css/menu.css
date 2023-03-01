@@ -67,6 +67,22 @@
 	gap: 2rem;
 }
 
+.descricao-carrinho {
+	position: relative;
+}
+
+.quantidade-carrinho {
+	padding: 0.1rem 0.8rem;
+	background: var(--cor-primaria-1);
+	font: var(--fonte-primaria-2);
+	font-size: 1rem;
+	border-radius: 1rem;
+	color: var(--cor-neutra-5);
+	position: absolute;
+	top: -1rem;
+	right: -1rem;
+}
+
 .avatar {
 	width: 3rem;
 	height: 3rem;
@@ -82,7 +98,7 @@
 /* Carrinho de compras */
 
 .carrinho {
-	display: grid;
+	display: none;
 	gap: 1.5rem;
 	padding: 1.6rem;
 	position: absolute;
@@ -93,6 +109,13 @@
 	right: 0;
 	background-color: var(--cor-neutra-5);
 	border-radius: 0.8rem;
+	opacity: 0.5;
+	transform: translateY(-4rem);
+	animation: esquerdaParaDireita 0.2s forwards;
+}
+
+.carrinho.ativo {
+	display: grid;
 }
 
 .titulo-carrinho {

@@ -18,7 +18,7 @@ export default class Contador {
 	}
 
 	decrementar() {
-		if (this.valorAtual < 1) {
+		if (this.valorAtual <= 1) {
 			return
 		}
 
