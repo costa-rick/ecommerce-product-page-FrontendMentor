@@ -3,18 +3,21 @@ import CarrinhoModel from './CarrinhoModel.js'
 import QuantidadeCarrinho from './QuantidadeCarrinho.js'
 
 export default class ExibirCarrinho {
-	constructor(botaoCarrinho, carrinho, listaProdutos, carrinhoVazio) {
+	constructor(botaoCarrinho, carrinho, listaProdutos, carrinhoVazio, botaoCheckout) {
 		this.botaoCarrinhoEl = document.querySelector(botaoCarrinho)
 		this.carrinhoEl = document.querySelector(carrinho)
 		this.listaProdutosEl = document.querySelector(listaProdutos)
 		this.carrinhoVazioEl = document.querySelector(carrinhoVazio)
+		this.botaoCheckoutEl = document.querySelector(botaoCheckout)
 
 		this.carrinhoModel = new CarrinhoModel()
 		this.carrinho = this.carrinhoModel.puxarProdutosLocalStorage()
-		this.classeCarrinhoVazio = 'mostrar'
+		this.classeMostrar = 'mostrar'
+		this.classeAtivo = 'ativo'
 
 		this.botaoCarrinho_Click = this.botaoCarrinho_Click.bind(this)
 		this.removerProdutoDoCarrinho_Click = this.removerProdutoDoCarrinho_Click.bind(this)
+		this.clickForaDoCarrinho_Click = this.clickForaDoCarrinho_Click.bind(this)
 	}
 
 	autalizarCarrinho() {
@@ -22,13 +25,10 @@ export default class ExibirCarrinho {
 	}
 
 	botaoCarrinho_Click() {
-		this.carrinhoEl.classList.toggle('ativo')
-		this.autalizarCarrinho()
+		this.carrinhoEl.classList.toggle(this.classeAtivo)
+		this.atualizarExibicaoCarrinhoVazio()
 
-		if (this.carrinho.length === 0) {
-			this.carrinhoVazioEl.classList.add(this.classeCarrinhoVazio)
-		} else {
-			this.carrinhoVazioEl.classList.remove(this.classeCarrinhoVazio)
+		if (this.carrinho.length > 0) {
 			this.adicionarTemplateProdutoALista(this.carrinho)
 
 			const botoes = this.pegarListaDeBotoes(this.listaProdutosEl, '.botao-remover-item')
@@ -40,11 +40,13 @@ export default class ExibirCarrinho {
 		this.autalizarCarrinho()
 
 		if (this.carrinho.length === 0) {
-			this.carrinhoVazioEl.classList.add(this.classeCarrinhoVazio)
+			this.carrinhoVazioEl.classList.add(this.classeMostrar)
+			this.botaoCheckoutEl.classList.remove(this.classeMostrar)
 			return
 		}
 
-		this.carrinhoVazioEl.classList.remove(this.classeCarrinhoVazio)
+		this.carrinhoVazioEl.classList.remove(this.classeMostrar)
+		this.botaoCheckoutEl.classList.add(this.classeMostrar)
 	}
 
 	adicionarTemplateProdutoALista(produtos) {
@@ -88,6 +90,18 @@ export default class ExibirCarrinho {
 		this.atualizarExibicaoCarrinhoVazio()
 	}
 
+	clickForaDoCarrinho_Click(event = new PointerEvent()) {
+		const medidas = this.carrinhoEl.getBoundingClientRect()
+		const distanciaDoTopo = medidas.top
+		const areaCarrinhoEl = medidas.top + medidas.height
+
+		const { clientY } = event
+
+		if (clientY > areaCarrinhoEl || clientY < distanciaDoTopo) {
+			this.carrinhoEl.classList.remove(this.classeAtivo)
+		}
+	}
+
 	gerarTemplateProduto(produto) {
 		return `<li class="carrinho-lista-item">
                     <img
@@ -108,10 +122,17 @@ export default class ExibirCarrinho {
 	}
 
 	iniciar() {
-		if (!this.botaoCarrinhoEl || !this.carrinhoEl) {
+		if (
+			!this.botaoCarrinhoEl ||
+			!this.carrinhoEl ||
+			!this.listaProdutosEl ||
+			!this.carrinhoVazioEl ||
+			!this.botaoCarrinhoEl
+		) {
 			throw new ArgumentoInvalidoErro()
 		}
 
 		this.botaoCarrinhoEl.addEventListener('click', this.botaoCarrinho_Click)
+		document.addEventListener('click', this.clickForaDoCarrinho_Click)
 	}
 }

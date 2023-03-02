@@ -10,9 +10,11 @@ export default class Slide {
 		this.estadoSlide = 0
 		this.movimentado = 0
 		this.distancia = Number(this.galeriaEl.clientWidth)
+		this.imagens = Array.from(this.galeriaEl.children)
 
 		this.botaoAnterior_Click = this.botaoAnterior_Click.bind(this)
 		this.botaoProximo_Click = this.botaoProximo_Click.bind(this)
+		this.recalcularDistancia_WindowResize = this.recalcularDistancia_WindowResize.bind(this)
 
 		this.esconderBotao()
 	}
@@ -24,7 +26,11 @@ export default class Slide {
 			this.movimentado += this.distancia
 		}
 
-		this.galeriaEl.style.transform = `translateX(-${this.movimentado}px)`
+		this.transformar(this.movimentado)
+	}
+
+	transformar(distancia) {
+		this.galeriaEl.style.transform = `translateX(-${distancia}px)`
 	}
 
 	botaoAnterior_Click() {
@@ -64,6 +70,18 @@ export default class Slide {
 	adicionarEventos() {
 		this.botaoAnteriorEl.addEventListener('click', this.botaoAnterior_Click)
 		this.botaoProximoEl.addEventListener('click', this.botaoProximo_Click)
+		window.addEventListener('resize', this.recalcularDistancia_WindowResize)
+	}
+
+	recalcularDistancia_WindowResize() {
+		this.distancia = Number(this.galeriaEl.clientWidth)
+		this.atualizarImagemAtual()
+	}
+
+	atualizarImagemAtual() {
+		const distancia = this.imagens[this.estadoSlide].offsetLeft
+		this.movimentado = distancia
+		this.transformar(this.movimentado)
 	}
 
 	iniciar() {

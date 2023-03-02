@@ -189,6 +189,11 @@
 	color: var(--cor-neutra-5);
 	font: var(--fonte-primaria-2);
 	font-size: 1.4rem;
+	display: none;
+}
+
+.carrinho > button.mostrar {
+	display: block;
 }
 
 @media (min-width: 650px) {

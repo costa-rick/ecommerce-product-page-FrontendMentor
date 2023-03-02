@@ -38,6 +38,7 @@ const exibirCarrinho = new ExibirCarrinho(
 	'.descricao-carrinho',
 	'.carrinho',
 	'.carrinho-lista-produtos',
-	'.carrinho-vazio-texto'
+	'.carrinho-vazio-texto',
+	'.botao-checkout'
 )
 exibirCarrinho.iniciar()
