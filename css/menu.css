@@ -118,6 +118,19 @@
 	display: grid;
 }
 
+.carrinho-vazio-texto {
+	font: var(--fonte-primaria-2);
+	font-size: 1.5rem;
+	color: var(--cor-neutra-2);
+	text-align: center;
+	padding: 3.6rem 5rem 5rem 5rem;
+	display: none;
+}
+
+.carrinho-vazio-texto.mostrar {
+	display: block;
+}
+
 .titulo-carrinho {
 	position: relative;
 	font-size: 1.6rem;

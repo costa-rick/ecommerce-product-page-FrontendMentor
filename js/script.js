@@ -4,7 +4,7 @@ import Slide from './slide.js'
 import BotaoAdicionarProduto from './BotaoAdicionarProduto.js'
 import CarrinhoModel from './CarrinhoModel.js'
 import QuantidadeCarrinho from './QuantidadeCarrinho.js'
-import exibirCarrinho from './exibirCarrinho.js'
+import ExibirCarrinho from './ExibirCarrinho.js'
 
 const menuMobile = new MenuMobile('.menu-icone', '.navegacao-icone-fechar', '.navegacao')
 menuMobile.iniciar()
@@ -24,6 +24,7 @@ const botaoAdicionar = new BotaoAdicionarProduto(
 	'.titulo-produto',
 	'.preco',
 	'#contador',
+	'.imagem-produto',
 	'.quantidade-carrinho'
 )
 
@@ -33,4 +34,10 @@ const carrinho = new CarrinhoModel()
 const exibirQuantidade = new QuantidadeCarrinho('.quantidade-carrinho')
 exibirQuantidade.exibirQuantidade(carrinho.quantidadeDeProdutosCarrinho())
 
-exibirCarrinho('.descricao-carrinho', '.carrinho')
+const exibirCarrinho = new ExibirCarrinho(
+	'.descricao-carrinho',
+	'.carrinho',
+	'.carrinho-lista-produtos',
+	'.carrinho-vazio-texto'
+)
+exibirCarrinho.iniciar()

@@ -3,12 +3,12 @@ import ArgumentoInvalidoErro from './ArgumentoInvalidoErro.js'
 import QuantidadeCarrinho from './QuantidadeCarrinho.js'
 
 export default class BotaoAdicionarProduto {
-	constructor(botao, tituloProduto, precoProduto, quantidadeProduto, exibirQuantidade) {
+	constructor(botao, tituloProduto, precoProduto, quantidadeProduto, imagemProduto, exibirQuantidade) {
 		this.botaoEl = document.querySelector(botao)
 		this.tituloProdutoEl = document.querySelector(tituloProduto)
 		this.precoProdutoEl = document.querySelector(precoProduto)
 		this.quantidadeProdutoEl = document.querySelector(quantidadeProduto)
-		// this.imagemProdutoEl = document.querySelector(imagemProduto)
+		this.imagemProdutoEl = document.querySelector(imagemProduto).getAttribute('src')
 
 		this.exibirQuantidade = new QuantidadeCarrinho(exibirQuantidade)
 
@@ -23,12 +23,14 @@ export default class BotaoAdicionarProduto {
 		const titulo = this.tituloProdutoEl.innerText
 		const preco = this.limparPrecoProduto(this.precoProdutoEl.innerText)
 		const quantidade = Number(this.quantidadeProdutoEl.innerText)
+		const imagem = this.imagemProdutoEl
 		const total = preco * quantidade
 
 		return {
 			titulo,
 			preco,
 			quantidade,
+			imagem,
 			total,
 		}
 	}
@@ -48,7 +50,13 @@ export default class BotaoAdicionarProduto {
 	}
 
 	iniciar() {
-		if (!this.botaoEl || !this.precoProdutoEl || !this.quantidadeProdutoEl || !this.tituloProdutoEl)
+		if (
+			!this.botaoEl ||
+			!this.precoProdutoEl ||
+			!this.quantidadeProdutoEl ||
+			!this.tituloProdutoEl ||
+			!this.imagemProdutoEl
+		)
 			throw new ArgumentoInvalidoErro()
 
 		this.adicionarEvento()

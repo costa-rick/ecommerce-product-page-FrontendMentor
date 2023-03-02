@@ -6,7 +6,7 @@ export default class CarrinhoModel {
 
 	adicionarProduto(produto) {
 		const produtos = this.puxarProdutosLocalStorage()
-		const indiceProduto = this.procurarProduto(produtos, produto)
+		const indiceProduto = this.procurarIndiceProduto(produtos, produto)
 
 		if (indiceProduto >= 0) {
 			this.atualizarProduto(produtos, produtos[indiceProduto], produto)
@@ -32,6 +32,16 @@ export default class CarrinhoModel {
 		localStorage.setItem(this.produtosChave, JSON.stringify(produtos))
 	}
 
+	removerProdutoDoCarrinho(produto) {
+		const produtos = this.puxarProdutosLocalStorage()
+		const indiceProduto = this.procurarIndiceProduto(produtos, produto)
+
+		if (indiceProduto >= 0) {
+			produtos.splice(indiceProduto, 1)
+			this.atualizarCarrinho(produtos)
+		}
+	}
+
 	puxarProdutosLocalStorage() {
 		return JSON.parse(localStorage.getItem(this.produtosChave))
 	}
@@ -44,14 +54,20 @@ export default class CarrinhoModel {
 		produto.total = Number((produto.quantidade * produto.preco).toFixed(2))
 	}
 
-	procurarProduto(produtos, produto) {
+	procurarIndiceProduto(produtos, produto) {
 		const procurarProduto = (produtoCarrinho) => {
 			return produtoCarrinho.titulo === produto.titulo
 		}
 
-		const pro = produtos.findIndex(procurarProduto)
-		console.log(pro)
-		return pro
+		return produtos.findIndex(procurarProduto)
+	}
+
+	procurarProduto(produtos, produtoTitulo) {
+		const procurarProduto = (produtoCarrinho) => {
+			return produtoCarrinho.titulo === produtoTitulo
+		}
+
+		return produtos.find(procurarProduto) || undefined
 	}
 
 	quantidadeDeProdutosCarrinho() {
